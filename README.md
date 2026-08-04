@@ -6,7 +6,7 @@ Angular 22.1.0 / Angular Material 22 / CLI 22.1.2 / Node 22.22.3, verified in Ch
 
 Enabling `provideCssVarNamespacing()` in an application silently breaks every third-party
 library whose component styles reference CSS custom properties that are defined in a global
-stylesheet — which is the standard way libraries expose theming.
+stylesheet, which is the standard way libraries expose theming.
 
 **Angular Material is completely unstyled.** A `<button matButton="filled">` loses its fill,
 its label colour and its shape.
@@ -23,7 +23,7 @@ The compiler rewrites custom property references inside a component's `styles`
 are never rewritten.
 
 For a library published with partial compilation this rewrite does not happen at publish
-time — it happens at the **consumer's** build, using the **consumer's** namespace, because
+time. It happens at the **consumer's** build, using the **consumer's** namespace, because
 `PartialComponentLinkerVersion1.linkPartialDeclaration` re-runs `parseTemplate` and
 `compileComponentFromMetadata`.
 
@@ -44,9 +44,9 @@ Toggle the feature by commenting out `provideCssVarNamespacing('repro')` in
 
 The app contains two cases, both of which are third-party-library scenarios:
 
-- **Angular Material** — `@angular/material` 22 with the prebuilt `azure-blue` theme and a
+- **Angular Material**: `@angular/material` 22 with the prebuilt `azure-blue` theme and a
   plain `<button matButton="filled">`.
-- **`projects/ui`** — a minimal local library, built with `ng build ui`, whose component
+- **`projects/ui`**: a minimal local library, built with `ng build ui`, whose component
   styles reference `--brand`, which `src/styles.css` defines globally. Included to show the
   mechanism without Material's size.
 
@@ -116,7 +116,7 @@ $ grep -o -- "--[a-zA-Z%-]*" dist/cssvar-global-token-repro/browser/styles.css
 
 ## Note on `--global--`
 
-`--global--foo` is the designed opt-out and does work — but only in source the author
+`--global--foo` is the designed opt-out and does work, but only in source the author
 controls. A library would have to spell every token `--global--mat-sys-…` in its own styles to
 protect itself against a decision its consumers make, and libraries published before v22.1
 cannot. A consuming application has no way to apply it to a dependency.
