@@ -1,0 +1,4 @@
+/* Global stylesheet. Per PR #68846, global styles are explicitly NOT namespaced. */
+:root {
+  --brand: rgb(255, 0, 0); /* red */
+}
